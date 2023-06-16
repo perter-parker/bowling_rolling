@@ -1,6 +1,6 @@
-package com.bowling.rolling.repository;
+package com.bowling.rolling.model.restaurants.repository;
 
-import com.bowling.rolling.domain.Restaurant;
+import com.bowling.rolling.model.restaurants.domain.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
 }
+

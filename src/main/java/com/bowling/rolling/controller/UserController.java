@@ -1,7 +1,7 @@
 package com.bowling.rolling.controller;
 
-import com.bowling.rolling.domain.User;
-import com.bowling.rolling.service.UserService;
+import com.bowling.rolling.model.users.domain.User;
+import com.bowling.rolling.model.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

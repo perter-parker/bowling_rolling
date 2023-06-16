@@ -1,7 +1,7 @@
-package com.bowling.rolling.service;
+package com.bowling.rolling.model.users.service;
 
-import com.bowling.rolling.domain.User;
-import com.bowling.rolling.repository.UserRepository;
+import com.bowling.rolling.model.users.domain.User;
+import com.bowling.rolling.model.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.bowling.rolling.repository;
+package com.bowling.rolling.model.users.repository;
 
-import com.bowling.rolling.domain.User;
+import com.bowling.rolling.model.users.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

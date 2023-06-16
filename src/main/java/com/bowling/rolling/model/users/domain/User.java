@@ -1,4 +1,4 @@
-package com.bowling.rolling.domain;
+package com.bowling.rolling.model.users.domain;
 
 import lombok.Getter;
 import lombok.Setter;

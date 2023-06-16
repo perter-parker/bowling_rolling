@@ -1,18 +1,16 @@
 package com.bowling.rolling.controller;
 
-import com.bowling.rolling.domain.Restaurant;
-import com.bowling.rolling.service.RestaurantService;
+import com.bowling.rolling.model.restaurants.domain.Restaurant;
+import com.bowling.rolling.model.restaurants.service.RestaurantServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/restaurants")
 public class RestaurantController {
-    private final RestaurantService restaurantService;
-
-    public RestaurantController(RestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
-    }
+    private final RestaurantServiceImpl restaurantService;
 
     /**
      * 식당 메뉴 생성
@@ -22,6 +20,7 @@ public class RestaurantController {
     @PostMapping("/restaurants")
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
         Restaurant createdRestaurant = restaurantService.createRestaurant(restaurant);
+        restaurantService.addRepresentativeMenu(createdRestaurant.getId(), createdRestaurant.getRepresentativeMenuList());
         return ResponseEntity.ok(createdRestaurant);
     }
 
@@ -33,6 +32,7 @@ public class RestaurantController {
     @GetMapping("/restaurants/{id}")
     public ResponseEntity<Restaurant> getRestaurantById(@PathVariable Long id) {
         Restaurant restaurant = restaurantService.getRestaurantById(id);
+        System.out.println(restaurant);
         if (restaurant != null) {
             return ResponseEntity.ok(restaurant);
         } else {
@@ -53,9 +53,11 @@ public class RestaurantController {
             restaurant.setName(updatedRestaurant.getName());
             restaurant.setAddress(updatedRestaurant.getAddress());
             restaurant.setPhoneNumber(updatedRestaurant.getPhoneNumber());
-            restaurant.setOperatingHours(updatedRestaurant.getOperatingHours());
-            restaurant.setMainMenuImageUrl(updatedRestaurant.getMainMenuImageUrl());
-            Restaurant updated = restaurantService.updateRestaurant(restaurant);
+            restaurant.setOpeningTime(updatedRestaurant.getOpeningTime());
+            restaurant.setClosingTime(updatedRestaurant.getClosingTime());
+            restaurant.setAmenities(updatedRestaurant.getAmenities());
+            restaurantService.addRepresentativeMenu(id, restaurant.getRepresentativeMenuList());
+            Restaurant updated = restaurantService.updateRestaurant(updatedRestaurant);
             return ResponseEntity.ok(updated);
         } else {
             return ResponseEntity.notFound().build();

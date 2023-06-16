@@ -1,5 +1,6 @@
-package com.bowling.rolling.domain;
+package com.bowling.rolling.model.restaurants.domain;
 
+import com.bowling.rolling.model.restaurants.domain.Restaurant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,13 +13,20 @@ import javax.persistence.*;
 public class RepresentativeMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "representative_menu_id")
     private Long id;
-
-    @Column(name = "menu_name", nullable = false)
-    private String menuName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
+
+    @Column(name = "menu_name", nullable = false)
+    private String menuName;
+
+    @Column(name = "price", nullable = false)
+    private int price;
+
+    @Column(name = "menu_image_url")
+    private String menuImageUrl;
 }
 
